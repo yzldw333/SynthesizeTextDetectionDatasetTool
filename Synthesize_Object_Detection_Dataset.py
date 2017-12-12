@@ -69,7 +69,6 @@ def Generate_Num_Detection_Dataset(bgroot,outimgroot,outlabelroot,counts=100,min
         fw = open(outlabelpath,'w')
         for text,box in labels:
             fw.write('%d %d %d %d %s\n'%(box[0],box[1],box[2],box[3],text))
-            draw.rectangle([box[0],box[1],box[2],box[3]])
         fw.close()
 
 if __name__=='__main__':
