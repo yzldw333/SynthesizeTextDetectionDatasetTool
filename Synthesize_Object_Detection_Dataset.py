@@ -12,6 +12,7 @@ def Generate_Numbers_to_dir(counts=1,max_number=2000,outdir='./numberImg'):
     :return:
     '''
 
+    fontlist = ['./fonts/Vera.ttf']
     if os.path.exists(outdir)==False:
         os.mkdir(outdir)
     for i in range(counts):
@@ -19,9 +20,13 @@ def Generate_Numbers_to_dir(counts=1,max_number=2000,outdir='./numberImg'):
             try:
                 num = random.randint(0,max_number)
                 color=(random.random(),random.random(),random.random())
-                GenerateNumberPic(text=str(num),font='Vera.ttf',textsize=100,color=color,outPath=os.path.join(outdir,str(i)+'_'+str(num)+'.png'))
+                outpath = os.path.join(outdir,str(i)+'_'+str(num)+'.png')
+                font = random.choice(fontlist)
+                image = GenerateNumberPic(text=str(num),font=font,textsize=100,color=color)
+                image.save(outpath,format='PNG')
                 break
             except Exception as e:
+                print(e)
                 continue
 
 def Generate_Num_Detection_Dataset(bgroot,outimgroot,outlabelroot,counts=100,min_num_of_text=4,max_num_of_text=7):
@@ -55,7 +60,11 @@ def Generate_Num_Detection_Dataset(bgroot,outimgroot,outlabelroot,counts=100,min
         for k in range(random.randint(min_num_of_text, max_num_of_text)):
             while True:
                 try:
-                    text = str(random.randint(0,1000))
+                    text_list = ['CCTV5','China']
+                    if random.random()<0.5:
+                        text = random.choice(text_list)
+                    else:
+                        text = str(random.randint(0,1000))
                     color=(random.random(),random.random(),random.random())
                     font=random.choice(fontlist)
                     imglist.append((text,GenerateNumberPic(text=text,textsize=100,color=color,font=font)))
@@ -72,4 +81,5 @@ def Generate_Num_Detection_Dataset(bgroot,outimgroot,outlabelroot,counts=100,min
         fw.close()
 
 if __name__=='__main__':
-    Generate_Num_Detection_Dataset('./bg','./outimg','./outlabel',30)
+    #Generate_Numbers_to_dir(20)
+    #Generate_Num_Detection_Dataset('./bg','./outimg','./outlabel',30)

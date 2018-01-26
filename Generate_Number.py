@@ -11,7 +11,7 @@ from PIL import Image
 import numpy as np
 import numpy
 import matplotlib.pyplot as plt
-def GenerateNumberPic(text='10',textsize=100,color=(1,0,0),font='./Vera.ttf',outPath=''):
+def GenerateNumberPic(text='10',textsize=100,color=(1,0,0),font='./Vera.ttf'):
 
     face = Face(font)
     face.set_char_size( textsize*64 )
@@ -56,7 +56,6 @@ def GenerateNumberPic(text='10',textsize=100,color=(1,0,0),font='./Vera.ttf',out
     I = img.view(dtype=float).reshape(img.shape[0], img.shape[1], 4)
     I = (I*255).astype(int).astype(np.uint8)
     image = Image.fromarray(I,mode='RGBA')
-    #image.save(outPath,format='PNG')
     return image
 
 if __name__ == '__main__':
