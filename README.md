@@ -33,7 +33,13 @@ python setup.py install
 ```
 2. Go to official [freetype website](https://www.freetype.org/) to download source files or precompiled dlls.
 3. Use script Synthesize_Object_Detection_Dataset.py to synthesize dataset. You can modify parameters to meet your needs. 
+***
+![visualize](https://github.com/yzldw333/SynthesizeTextDetectionDatasetTool/blob/master/test.jpg)
 
+*Label txt Format*
+```
+xmin ymin xmax ymax txt
+```
 
 ***
 ### Some words
